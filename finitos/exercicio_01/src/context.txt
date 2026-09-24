@@ -1,0 +1,17 @@
+O autômato é um AFD que verifica se uma string pode ser um identificador válido.
+
+Estados: INICIO, VALIDO e ERRO.
+
+Alfabeto: letras minúsculas (a-z), números (0-9), _ e outros caracteres que podem aparecer na entrada.
+
+Estado inicial: INICIO.
+
+Estado final: VALIDO.
+
+Estado de erro: ERRO.
+
+No primeiro caractere, são aceitos apenas letras minúsculas ou _. Nos próximos, são aceitos letras minúsculas, números e _. Qualquer caractere inválido leva o autômato para ERRO.
+
+No código, o enum Estado representa os estados e a struct Automato guarda o estado atual. O método processar() faz as transições entre estados, executar() percorre a string e aceita() verifica se o estado final é VALIDO.
+
+O autômato é determinístico porque, para cada estado e caractere recebido, existe apenas uma transição possível.
