@@ -1,0 +1,1 @@
+/home/joaob/Projetos/automatos/finitos/exercicio_01/target/debug/exercicio_01: /home/joaob/Projetos/automatos/finitos/exercicio_01/src/automato.rs /home/joaob/Projetos/automatos/finitos/exercicio_01/src/main.rs
