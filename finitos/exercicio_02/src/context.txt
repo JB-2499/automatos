@@ -1,0 +1,27 @@
+O autômato é um AFD que verifica se uma string representa um número inteiro ou decimal válido.
+
+Estados: INICIO, INTEIRO, PONTO, DECIMAL e ERRO.
+
+Alfabeto: números (0-9), ponto (.) e outros caracteres que podem aparecer na entrada.
+
+Estado inicial: INICIO.
+
+Estados finais: INTEIRO e DECIMAL.
+
+Estado de erro: ERRO.
+
+No estado INICIO, são aceitos apenas números. Ao receber um número, o autômato vai para INTEIRO.
+
+No estado INTEIRO, números continuam sendo aceitos e mantêm o autômato nesse estado. Ao receber um ponto, o autômato vai para PONTO.
+
+No estado PONTO, apenas um número é aceito. Ao receber um número, o autômato vai para DECIMAL. Qualquer outro caractere leva o autômato para ERRO.
+
+No estado DECIMAL, apenas números são aceitos, mantendo o autômato nesse estado. Qualquer outro caractere leva o autômato para ERRO.
+
+No estado ERRO, o autômato permanece em ERRO independentemente do caractere recebido.
+
+Uma entrada é válida se, após processar todos os caracteres, o autômato estiver em INTEIRO ou DECIMAL. Dessa forma, números como "123", "42" e "3.14" são válidos, enquanto entradas como "123.", ".5", "1.2.3", "-10" e "abc" são inválidas.
+
+No código, o enum Estado representa os estados e a struct Automato guarda o estado atual. O método processar() realiza as transições entre estados, consumir() percorre a string e validar() verifica se o estado final é INTEIRO ou DECIMAL.
+
+O autômato é determinístico porque, para cada estado e caractere recebido, existe apenas uma transição possível.
