@@ -1,0 +1,11 @@
+O autômato é um AFD que verifica se uma fita contendo algarismos está em ordem crescente, permitindo que algarismos iguais apareçam consecutivamente.
+
+O autômato começa no estado INICIO. O primeiro algarismo pode ser qualquer valor de 0 a 9. Depois disso, o próximo algarismo deve ser maior ou igual ao anterior.
+
+Para representar essa informação, existem estados correspondentes ao último algarismo lido, de ULTIMO_0 até ULTIMO_9. Se o próximo algarismo for maior ou igual ao atual, o autômato continua em um estado correspondente ao novo algarismo. Se for menor, vai para o estado ERRO.
+
+Qualquer caractere que não seja um algarismo também leva o autômato para ERRO. Uma vez nesse estado, o autômato permanece nele.
+
+A entrada é válida quando, ao final da fita, o autômato estiver em um dos estados ULTIMO_0 até ULTIMO_9.
+
+Por exemplo, 123, 112345, 001239 e 5559 são válidas. Já 321, 132, 12321 e 109 são inválidas.
