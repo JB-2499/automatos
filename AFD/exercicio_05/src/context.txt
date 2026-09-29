@@ -1,0 +1,19 @@
+O autômato é um AFD que verifica se uma string corresponde exatamente a uma das palavras reservadas definidas: "if", "else", "while" ou "return".
+
+Estados: INICIO, estados intermediários para cada palavra, estados finais e ERRO.
+
+Alfabeto: letras minúsculas do alfabeto e outros caracteres que podem aparecer na entrada.
+
+O estado inicial é INICIO. Os estados finais correspondem ao momento em que uma das palavras reservadas foi completamente reconhecida.
+
+A partir do estado INICIO, o primeiro caractere determina qual caminho será seguido. Ao receber 'i', o autômato inicia o reconhecimento da palavra "if". Ao receber 'e', inicia o reconhecimento de "else". Ao receber 'w', inicia o reconhecimento de "while". Ao receber 'r', inicia o reconhecimento de "return".
+
+Em cada estado intermediário, somente o próximo caractere esperado da palavra correspondente é aceito. Caso seja recebido um caractere diferente do esperado, o autômato vai para o estado ERRO.
+
+Uma entrada só é válida quando todos os caracteres de uma das palavras forem consumidos e o autômato terminar em um estado final. Dessa forma, entradas como "if", "else", "while" e "return" são válidas, enquanto "i", "iff", "ifx", "els", "elseif", "whil", "while1", "returno", "IF" e "Return" são inválidas.
+
+O autômato também deve rejeitar palavras que contenham uma das palavras reservadas como prefixo, mas possuam caracteres adicionais. Por exemplo, "ifx" não deve ser aceito apenas porque os dois primeiros caracteres formam a palavra "if".
+
+No código, o enum Estado representa os estados e a struct Automato guarda o estado atual. O método processar() realiza as transições entre estados, consumir() percorre a string e validar() verifica se o estado final corresponde a uma palavra reservada reconhecida.
+
+O autômato é determinístico porque, para cada estado e caractere recebido, existe apenas uma transição possível.
