@@ -1,0 +1,29 @@
+O autômato é um AFD que verifica se uma string representa um número inteiro ou decimal válido, permitindo um sinal opcional (+ ou -) no início.
+
+Estados: INICIO, SINAL, INTEIRO, PONTO, DECIMAL e ERRO.
+
+Alfabeto: números (0-9), sinais (+ e -), ponto (.) e outros caracteres que podem aparecer na entrada.
+
+O estado inicial é INICIO. Os estados finais são INTEIRO e DECIMAL. O estado ERRO representa uma entrada inválida.
+
+No estado INICIO, podem ser recebidos um sinal (+ ou -) ou um número. Caso seja recebido um sinal, o autômato vai para SINAL, onde obrigatoriamente deve receber um número. Caso receba um número diretamente, vai para INTEIRO.
+
+No estado INTEIRO, números continuam sendo aceitos e mantêm o autômato nesse estado. Ao receber um ponto, o autômato vai para PONTO.
+
+No estado PONTO, obrigatoriamente deve ser recebido um número. Ao receber um número, o autômato vai para DECIMAL. Qualquer outro caractere leva o autômato para ERRO.
+
+No estado DECIMAL, números continuam sendo aceitos, mantendo o autômato nesse estado. Qualquer outro caractere leva o autômato para ERRO.
+
+O estado SINAL existe para garantir que o sinal apareça apenas no início e seja obrigatoriamente seguido por um número. Dessa forma, entradas como "+10", "-3.14" e "+0.5" são válidas, enquanto "+", "-", "+.5" e "--10" são inválidas.
+
+No estado ERRO, o autômato permanece em ERRO independentemente do caractere recebido.
+
+Uma entrada é válida se, após processar todos os caracteres, o autômato estiver em INTEIRO ou DECIMAL.
+
+Exemplos de entradas válidas: "10", "-10", "+10", "3.14", "-3.14", "+3.14" e "-0.5".
+
+Exemplos de entradas inválidas: "+", "-", "+.", "-.", ".5", "+.5", "10.", "-10.", "--10", "++10", "10..5" e "10.2.3".
+
+No código, o enum Estado representa os estados e a struct Automato guarda o estado atual. O método processar() realiza as transições entre estados, consumir() percorre a string e validar() verifica se o estado final é INTEIRO ou DECIMAL.
+
+O autômato é determinístico porque, para cada estado e caractere recebido, existe apenas uma transição possível.
