@@ -1,5 +1,6 @@
 pub enum Estado {
     INICIO,
+    SINAL,
     INTEIRO,
     PONTO,
     DECIMAL,
@@ -20,6 +21,16 @@ impl Automato {
     pub fn processar(&mut self, letra: char) {
         match self.estado {
             Estado::INICIO => {
+                if letra.is_ascii_digit() {
+                    self.estado = Estado::INTEIRO;
+                } else if letra == '+' || letra == '-' {
+                    self.estado = Estado::SINAL;
+                } else {
+                    self.estado = Estado::ERRO;
+                }
+            }
+
+            Estado::SINAL => {
                 if letra.is_ascii_digit() {
                     self.estado = Estado::INTEIRO;
                 } else {
